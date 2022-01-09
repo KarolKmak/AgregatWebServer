@@ -7,7 +7,7 @@ $host = "localhost";
 $conn = mysqli_connect($host,$user,$pass,$db);
 if($conn)
 {
-	
+	echo "blablabla";
 	$q = "select * from users where username like '$user' and password like '$pass'";
 	$result = mysqli_query($conn, $q);
 
