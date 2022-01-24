@@ -1,58 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Usbwebserver</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-</head>
-<body>
-	<div id="container">
-		<img id="header" src="images/header.png">
-		<ul id="menu">
-			<li>
-				<div id="menuleft"></div>
-				<a id="menua" href="http://www.usbwebserver.com">
-					USBWebserver.com
-				</a>
-				<div id="menuright"></div>
-			</li>
-			<li>
-				<div id="menuleft"></div>
-				<a id="menua" href="http://www.border-it.nl">
-					Border-IT
-				</a>
-				<div id="menuright"></div>
-			</li>
-		</ul>
-		<div id="topcontent"></div>
-		<div id="content">
-			<div id="contentleft">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregat - strona główna</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
 
-			<h1>USBWebserver V8.6</h1>
-			<p>
-				<ul>
-					<li>14 different languages</li>
-					<li>DPI bug fixed</li>
-					<li>Php 5.4.17</li>
-					<li>Httpd 2.4.6</li>
-					<li>PhpMyAdmin 4.0.4.2</li>
-					<li>MySQL 5.6.13</li>
-				</ul>
-			</p>
-			<h1>PHP 5.4.17 info</h1>
-			<?php
-				ob_start();
-				phpinfo();
-				$i = ob_get_contents();
-				ob_end_clean();
-				
-				echo ( str_replace ( "module_Zend Optimizer", "module_Zend_Optimizer", preg_replace ( '%^.*<body>(.*)</body>.*$%ms', '$1', $i ) ) ) ;
 
-			?>
-			
-			</div>
-			<a href="#" id="banner"></a>
-			<br style="clear:both">
-		
+<div class="containner">
+
+
+<div class="header"> 
+  <h1>
+    Agregat
+  </h1>
+  <div class="menu" onclick="agregaty()">
+Moje agregaty
+</div>
+<div class="menu" onclick="konto()">
+  Moje konto
+</div>
+<div class="menu" onclick="dane()">
+  Dane osobiste
+</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+function konto(){
+  window.location.href = "/moje_konto.php";
+}
+function dane(){
+  window.location.href = "/moje_dane.php";
+}
+function agregaty(){
+  window.location.href = "/index.php";
+}
+</script>
+
+
+
+<div class="articles">
+<h2>Moje ostatnie artykuły</h2>
+<script type="text/javascript">
+function link(adres)
+{
+  window.location.href = adres;
+}
+</script>
+<?php
+session_start();
+$conn = mysqli_connect("localhost","root","usbw","agregat");
+$q = "select Title,title_description,Adress from agregat where User_ID like '".$_SESSION["id"]."' ORDER BY ID_sugested_article ASC LIMIT 50";
+$result = mysqli_query($conn, $q);
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "<div class = 'article'>";
+    echo "<h3 onclick = 'link(\"".$row['Adress']."\")'>".$row["Title"]."</h3>";
+    echo $row["title_description"];
+    
+  }
+} else {
+  echo "0 results";
+}
+
+?>
+</div>
+
+
+
+
+
+
+</div>
+</body>
+</html>

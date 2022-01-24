@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregat - społecznościowy agregat wiadomości</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+
+<div class="containner">
+<div class="header"> 
+  <h1>
+    Agregat
+  </h1>
+</div>
+
+
+
+
+
+    <div class="logowanie">
+      <h2>Logowanie</h2>
+      <form action="logowanie.php" method="post">
+
+        <p>
+          <input type="text" name="login" id="login" required/>
+        </p>
+        <p>
+          <input type="password" name="haslo" id="haslo" placeholder="Hasło" required />
+        </p>
+
+
+          <div class="btn-block">
+              <button type="submit" href="/">Zaloguj</button>
+              <button type="button" onclick="rejestracja()">Zarejesruj się</button>
+          </div>
+      </form>
+    </div>
+
+
+
+<script type="text/javascript">
+function rejestracja(){
+  window.location.href = "/rejestracja.html";
+}
+</script>
+
+
+
+
+</div>
+  </body>
+</html>
