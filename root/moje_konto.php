@@ -15,6 +15,9 @@
   <h1>
     Agregat
   </h1>
+  <div class="menu" onclick="glowna()">
+Strona główna
+</div>
   <div class="menu" onclick="agregaty()">
 Moje agregaty
 </div>
@@ -36,8 +39,11 @@ function konto(){
 function dane(){
   window.location.href = "/moje_dane.php";
 }
-function agregaty(){
+function glowna(){
   window.location.href = "/index.php";
+}
+function agregaty(){
+  window.location.href = "/agregaty.php";
 }
 </script>
 

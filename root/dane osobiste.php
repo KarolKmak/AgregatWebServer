@@ -19,7 +19,7 @@ if($conn)
 	$result = mysqli_query($conn, $czy_istnieje);
 	if(mysqli_num_rows($result) > 0)
 	{
-		echo "wpisane - zmienić jutro";
+		echo "<script>window.location.href = \"/index.php\";</script>";
 	}
 	else
 	{

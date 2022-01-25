@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregat - zarządzanie kontem</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+
+<div class="containner">
+
+
+<div class="header"> 
+  <h1>
+    Agregat
+  </h1>
+  <div class="menu" onclick="glowna()">
+Strona główna
+</div>
+  <div class="menu" onclick="agregaty()">
+Moje agregaty
+</div>
+<div class="menu" onclick="konto()">
+  Moje konto
+</div>
+<div class="menu" onclick="dane()">
+  Dane osobiste
+</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+function glowna(){
+  window.location.href = "/index.php";
+}
+function konto(){
+  window.location.href = "/moje_konto.php";
+}
+function dane(){
+  window.location.href = "/moje_dane.php";
+}
+function agregaty(){
+  window.location.href = "/agregaty.php";
+}
+var act_agr = 0;
+function agregat(a,b){
+  if(act_agr != 0)
+  {
+    document.getElementById(act_agr).style.color = "gray";
+  }
+  act_agr = a;
+  document.getElementById(act_agr).style.color = "#ff6600";
+  if(b == 0)
+  {
+  document.getElementById("id_form").value = act_agr;
+  document.getElementById("formularz").submit();
+  }
+}
+
+
+function nowy()
+{
+    window.location.href = "artykul.php";
+}
+function zmien(a)
+{
+    document.getElementById("id_art").value = a;
+    document.getElementById("id_agr").value = act_agr;
+    document.getElementById("artyk").submit();
+}
+
+
+
+</script>
+
+
+<div class="agregat">
+Moje agregaty: 
+</div>
+<script type="text/javascript">
+function link(adres)
+{
+  window.location.href = adres;
+}
+</script>
+<?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+session_start();
+$conn = mysqli_connect("localhost","root","usbw","agregat");
+$q = "select Name, ID_agregat from agregat_users where ID_user = '".$_SESSION["id"]."'";
+$result = mysqli_query($conn, $q);
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "<div class = 'agregat' id = '".$row["ID_agregat"]."' onclick = 'agregat(".$row["ID_agregat"].",0)''>".$row["Name"]."</div>";
+    
+  }
+} else {
+  echo "0 results";
+}
+?>
+<div class= "articles">
+<button type="button" onclick="nowy()">Dodaj nowy</button>
+</div>
+
+<?php
+$id = 0;
+$id = $_POST["id"];
+if($id != 0)
+{
+  echo "<script>agregat(".$id.");</script>";
+
+echo "<div class=\"articles\">";
+$q2 = "select Title,title_description,Adress,ID_sugested_article from agregat where Agregat_ID like '".$id."' ORDER BY ID_sugested_article ASC LIMIT 50";
+$result2 = mysqli_query($conn, $q2);
+if ($result2->num_rows > 0)
+  {
+  // output data of each row
+  while($row = $result2->fetch_assoc())
+    {
+    echo "<div class = 'article'>";
+    echo "<h3 onclick = 'link(\"".$row['Adress']."\")'>".$row["Title"]."</h3>";
+    echo $row["title_description"];
+    echo "</br><button type=\"button\" onclick = \"zmien(".$row["ID_sugested_article"].")\">Zmień</button>";
+    }
+  }
+echo "</div>";
+
+}
+?>
+
+
+
+
+<form action="agregaty.php" method="post" id = "formularz">
+<input type="hidden" name="id" id = "id_form"/>
+<button type="submit" href="agregaty.php" style = "visibility: hidden;">a</button>
+</form>
+
+
+<form action="artykul.php" method="post" id = "artyk">
+<input type="hidden" name="id_art" id = "id_art"/>
+<input type="hidden" name="id_agr" id = "id_agr"/>
+<button type="submit" href="artykul.php" style = "visibility: hidden;">a</button>
+</form>
+
+</div>
+</body>
+</html>
