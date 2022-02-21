@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregat - zarządzanie kontem</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+
+<div class="containner">
+
+
+<div class="header"> 
+  <h1>
+    Agregat
+  </h1>
+  <div class="menu" onclick="glowna()">
+Strona główna
+</div>
+  <div class="menu" onclick="agregaty()">
+Moje agregaty
+</div>
+<div class="menu" onclick="konto()">
+  Moje konto
+</div>
+<div class="menu" onclick="dane()">
+  Dane osobiste
+</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+function konto(){
+  window.location.href = "/moje_konto.php";
+}
+function dane(){
+  window.location.href = "/moje_dane.php";
+}
+function glowna(){
+  window.location.href = "/index.php";
+}
+function agregaty(){
+  window.location.href = "/agregaty.php";
+}
+</script>
+
+
+
+<div class="logowanie">
+      <h2>Stwórz nowy agregat</h2>
+      <form action="nowy_agregat.php" method="post">
+
+        
+        <p>
+          <input type="text" name="nazwa" placeholder="Nazwa agregatu"/>
+		<p>
+          <textarea name="desc" placeholder="Tutaj wpisz krótki opis dla swojego agregatu. Opis ma zachęcić nowych użytkownikom do subskrypcji twojego agregatu"></textarea>
+        </p>
+
+
+          <div class="btn-block">
+              <button type="submit" href="/">Stwórz agregat</button>
+          </div>
+      </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>

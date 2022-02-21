@@ -42,6 +42,9 @@ function konto(){
 function dane(){
   window.location.href = "/moje_dane.php";
 }
+function nowy_agregat(){
+  window.location.href = "/nowy_agregat.php";
+}
 function agregaty(){
   window.location.href = "/agregaty.php";
 }
@@ -98,12 +101,15 @@ if ($result->num_rows > 0) {
     echo "<div class = 'agregat' id = '".$row["ID_agregat"]."' onclick = 'agregat(".$row["ID_agregat"].",0)''>".$row["Name"]."</div>";
     
   }
-} else {
-  echo "0 results";
+}
+else
+{
+header("Location:/nowy_agregat.html");
 }
 ?>
+<div class="agregat" id="nowy_agregat" onclick="nowy_agregat()">dodaj nowy agregat</div>
 <div class= "articles">
-<button type="button" onclick="nowy()">Dodaj nowy</button>
+<button type="button" onclick="nowy()">Dodaj nowy artykuł</button>
 </div>
 
 <?php
