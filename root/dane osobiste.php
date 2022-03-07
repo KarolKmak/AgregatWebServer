@@ -12,6 +12,7 @@ $surn = $_POST["surn"];
 $date = $_POST["date"];
 $adres = $_POST["adres"];
 $conn = mysqli_connect("localhost","root","usbw","agregat");
+mysql_query("SET NAMES UTF8");
 if($conn)
 {
 

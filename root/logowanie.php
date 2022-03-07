@@ -5,6 +5,7 @@ $pass = $_POST["haslo"];
 $host = "localhost";
 echo $user.$pass;
 $conn = mysqli_connect($host,"root","usbw",$db);
+mysql_query("SET NAMES UTF8");
 if($conn)
 {
 	$q = "select * from users where Username like '$user' and Password like '$pass'";

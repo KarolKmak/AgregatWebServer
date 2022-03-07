@@ -15,11 +15,11 @@
   <h1>
     Agregat
   </h1>
-  <div class="menu" onclick="glowna()">
-Strona główna
+<div class="menu" onclick="glowna()">
+	Strona główna
 </div>
-  <div class="menu" onclick="agregaty()">
-Moje agregaty
+<div class="menu" onclick="agregaty()">
+	Moje agregaty
 </div>
 <div class="menu" onclick="konto()">
   Moje konto
@@ -63,10 +63,22 @@ function agregat(a,b){
   }
 }
 
+function zarzadzaj()
+{
+	if(act_agr==0)
+	{
+	alert("Jak chcesz coś zmienić w danym agregacie to może go najpierw wybierz?");
+	return;
+	}
+	document.getElementById("id_agregat").value = act_agr;
+	document.getElementById("agregat_form").submit();
+}
+
 
 function nowy()
 {
-    window.location.href = "artykul.php";
+    document.getElementById("id_agr").value = act_agr;
+    document.getElementById("artyk").submit();
 }
 function zmien(a)
 {
@@ -93,9 +105,11 @@ function link(adres)
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 session_start();
 $conn = mysqli_connect("localhost","root","usbw","agregat");
+mysql_query("SET NAMES UTF8");
 $q = "select Name, ID_agregat from agregat_users where ID_user = '".$_SESSION["id"]."'";
 $result = mysqli_query($conn, $q);
-if ($result->num_rows > 0) {
+if ($result->num_rows > 0)
+{
   // output data of each row
   while($row = $result->fetch_assoc()) {
     echo "<div class = 'agregat' id = '".$row["ID_agregat"]."' onclick = 'agregat(".$row["ID_agregat"].",0)''>".$row["Name"]."</div>";
@@ -110,6 +124,7 @@ header("Location:/nowy_agregat.html");
 <div class="agregat" id="nowy_agregat" onclick="nowy_agregat()">dodaj nowy agregat</div>
 <div class= "articles">
 <button type="button" onclick="nowy()">Dodaj nowy artykuł</button>
+<button type="button" onclick="zarzadzaj()">Zarządzaj agregatem</button>
 </div>
 
 <?php
@@ -138,7 +153,11 @@ echo "</div>";
 }
 ?>
 
-
+<!--przejście do zarządzania agregatem-->
+<form action="zarzadzaj_agregatem.php" method="post" id = "agregat_form">
+<input type="hidden" name="id" id = "id_agregat"/>
+<button type="submit" href="zarzadzaj_agregatem.php" style = "visibility: hidden;">a</button>
+</form>
 
 
 <form action="agregaty.php" method="post" id = "formularz">
@@ -146,7 +165,7 @@ echo "</div>";
 <button type="submit" href="agregaty.php" style = "visibility: hidden;">a</button>
 </form>
 
-
+<!--edytowanie/dodanie artykułu-->
 <form action="artykul.php" method="post" id = "artyk">
 <input type="hidden" name="id_art" id = "id_art"/>
 <input type="hidden" name="id_agr" id = "id_agr"/>

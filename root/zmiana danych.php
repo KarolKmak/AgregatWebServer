@@ -11,6 +11,8 @@ $pass = $_POST["haslo"];
 $desc = $_POST["desc"];
 $mail = $_POST["mail"];
 $conn = mysqli_connect("localhost","root","usbw","agregat");
+mysql_query("SET NAMES UTF8");
+
 if($conn)
 {
 	if($pass != "")

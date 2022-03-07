@@ -2,27 +2,69 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Agregat - społecznościowy agregat wiadomości</title>
+    <title>Agregat - strona główna</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+
 <div class="containner">
+
+
 <div class="header"> 
   <h1>
     Agregat
   </h1>
+  <div class="menu" onclick="glowna()">
+Strona główna
+</div>
+  <div class="menu" onclick="agregaty()">
+Moje agregaty
+</div>
+<div class="menu" onclick="konto()">
+  Moje konto
+</div>
+<div class="menu" onclick="dane()">
+  Dane osobiste
+</div>
 </div>
 
-
+<script type="text/javascript">
+/*-------------------------podstawowe przyciski-------------------------*/
+function konto(){
+  window.location.href = "/moje_konto.php";
+}
+function glowna(){
+  window.location.href = "/index.php";
+}
+function dane(){
+  window.location.href = "/moje_dane.php";
+}
+function agregaty(){
+  window.location.href = "/agregaty.php";
+}
+</script>
+<script>
+/*-------------------------Dodanie ID do formularza-------------------------*/
+function zmien(a,b)
+{
+    document.getElementById("id_art").value = a;
+    document.getElementById("id_agr").value = b;
+}
+function nowy(a)
+{
+	document.getElementById("id_agr").value = a;
+}
+</script>
 <div class="logowanie">
 <h2>Artykuł: </h2>
-  <form action="logowanie.php" method="post">
+  <form action="artykul_zmien.php" method="post">
     <input type="hidden" name="id_art" id = "id_art"/>
-        <input type="hidden" name="id_agr" id = "id_agr"/>
+    <input type="hidden" name="id_agr" id = "id_agr" required />
 
     <p>
       Tytuł:
-      <input type="text" name="title" id="title" required/>
+      <input type="text" name="title" id="title" required />
     </p>
     <p>
       Adres:
@@ -48,19 +90,20 @@
   </form>
 </div>
 <?php
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$id_art = $_POST["id_art"];
-$id_agr = $_POST["id_agr"];
-
-if($id_art == "")
+session_start();
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+if($_POST["id_art"] != "")
 {
-  echo "nowy";
+$id_article = $_POST["id_art"];
+$id_agregat = $_POST["id_agr"];
+echo "<script>zmien('".$id_article."','".$id_agregat."')</script>";
 }
 else
 {
-  echo "zmień";
-  echo $id_art;
+$id_agregat = $_POST["id_agr"];
+echo "<script>nowy('".$id_agregat."')</script>";
 }
+
 ?>
 
 

@@ -5,6 +5,7 @@ $nazwa = $_POST["nazwa"];
 $desc = $_POST["desc"];
 $host = "localhost";
 $conn = mysqli_connect($host,"root","usbw",$db);
+mysql_query("SET NAMES UTF8");
 if($conn)
 {
 	$czy_jest = "select * from agregats where Name like '$nazwa'";

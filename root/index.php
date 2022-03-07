@@ -60,6 +60,7 @@ function link(adres)
 <?php
 session_start();
 $conn = mysqli_connect("localhost","root","usbw","agregat");
+mysql_query("SET NAMES UTF8");
 $q = "select Title,title_description,Adress from agregat where User_ID like '".$_SESSION["id"]."' ORDER BY ID_sugested_article ASC LIMIT 50";
 $result = mysqli_query($conn, $q);
 if ($result->num_rows > 0) {

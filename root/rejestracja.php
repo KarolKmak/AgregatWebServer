@@ -5,6 +5,7 @@ $pass = $_POST["haslo"];
 $email = $_POST["e-mail"];
 $host = "localhost";
 $conn = mysqli_connect($host,"root","usbw",$db);
+mysql_query("SET NAMES UTF8");
 if($conn)
 {
 	$czy_jest = "select * from users where Username like '$user'";
