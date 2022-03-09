@@ -87,10 +87,8 @@ if ($_POST['redaktor'] == 'TRUE')
 $rola += 1;
 
 
-$db = "agregat";
 $user = $_POST["user"];
-$host = "localhost";
-$conn = mysqli_connect($host,"root","usbw",$db);
+$conn = mysqli_connect("localhost","root","usbw","agregat");
 mysql_query("SET NAMES UTF8");
 if($conn)
 {

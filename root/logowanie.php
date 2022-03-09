@@ -1,38 +1,35 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregat - społecznościowy agregat wiadomości</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+</html>
 <?php
-$db = "agregat";
 $user = $_POST["login"];
 $pass = $_POST["haslo"];
-$host = "localhost";
-echo $user.$pass;
-$conn = mysqli_connect($host,"root","usbw",$db);
+$conn = mysqli_connect("localhost","root","usbw","agregat");
 mysql_query("SET NAMES UTF8");
 if($conn)
 {
 	$q = "select * from users where Username like '$user' and Password like '$pass'";
 	$result = mysqli_query($conn, $q);
-
 	if(mysqli_num_rows($result) > 0)
 		{
-			echo "zalogowano";
-
 			session_start();
 			$_SESSION["loggedin"] = 1;
 			$row = $result->fetch_assoc();
 			$_SESSION["id"] = $row["ID_user"];
-			header("Location: http://localhost/index.php");
-
+			header("Location: /index.php");
 		}
 		else
 		{	
-			echo "nie zalogowano";
+		echo    "<script>alert('Błędne hasło lub nazwa użytkownika');
+						 window.location.href = '/index.html';
+				</script>";
 		}
-
 }
-
-
 else
-{
-	echo "error, not connected";
-}
-
+echo "error, not connected";
 ?>

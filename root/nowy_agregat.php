@@ -38,7 +38,7 @@ function fun()
 {
 	$IDA = $GLOBALS['IDA'];
 	$conn = mysqli_connect("localhost","root","usbw","agregat");
-	$q4 = "INSERT INTO agregat.`users-agregats` (User_ID,Agregat_ID) VALUES ('".$_SESSION["id"]."','$IDA')";
+	$q4 = "INSERT INTO agregat.`users-agregats` (User_ID,Agregat_ID,Role) VALUES ('".$_SESSION["id"]."','$IDA','111')";
 	if ($conn->query($q4) === TRUE)
 	{
 		echo "New record created successfully";

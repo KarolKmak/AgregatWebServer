@@ -61,14 +61,14 @@ function link(adres)
 session_start();
 $conn = mysqli_connect("localhost","root","usbw","agregat");
 mysql_query("SET NAMES UTF8");
-$q = "select Title,title_description,Adress from agregat where User_ID like '".$_SESSION["id"]."' ORDER BY ID_sugested_article ASC LIMIT 50";
+$q = "select Title,article_description,Adress from agregat where User_ID like '".$_SESSION["id"]."' ORDER BY ID_sugested_article DESC LIMIT 20";
 $result = mysqli_query($conn, $q);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     echo "<div class = 'article'>";
     echo "<h3 onclick = 'link(\"".$row['Adress']."\")'>".$row["Title"]."</h3>";
-    echo $row["title_description"];
+    echo $row["article_description"];
     
   }
 } else {

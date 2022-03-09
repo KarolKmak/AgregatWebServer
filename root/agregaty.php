@@ -43,7 +43,7 @@ function dane(){
   window.location.href = "/moje_dane.php";
 }
 function nowy_agregat(){
-  window.location.href = "/nowy_agregat.php";
+  window.location.href = "/nowy_agregat.html";
 }
 function agregaty(){
   window.location.href = "/agregaty.php";
@@ -135,7 +135,7 @@ if($id != 0)
   echo "<script>agregat(".$id.");</script>";
 
 echo "<div class=\"articles\">";
-$q2 = "select Title,title_description,Adress,ID_sugested_article from agregat where Agregat_ID like '".$id."' ORDER BY ID_sugested_article ASC LIMIT 50";
+$q2 = "select Title,article_description,Adress,ID_sugested_article from agregat where Agregat_ID like '".$id."' ORDER BY ID_sugested_article DESC LIMIT 50";
 $result2 = mysqli_query($conn, $q2);
 if ($result2->num_rows > 0)
   {
@@ -144,7 +144,7 @@ if ($result2->num_rows > 0)
     {
     echo "<div class = 'article'>";
     echo "<h3 onclick = 'link(\"".$row['Adress']."\")'>".$row["Title"]."</h3>";
-    echo $row["title_description"];
+    echo $row["article_description"];
     echo "</br><button type=\"button\" onclick = \"zmien(".$row["ID_sugested_article"].")\">Zmień</button>";
     }
   }
@@ -159,7 +159,7 @@ echo "</div>";
 <button type="submit" href="zarzadzaj_agregatem.php" style = "visibility: hidden;">a</button>
 </form>
 
-
+<!--Wyświetlenie zawartości agregatów-->
 <form action="agregaty.php" method="post" id = "formularz">
 <input type="hidden" name="id" id = "id_form"/>
 <button type="submit" href="agregaty.php" style = "visibility: hidden;">a</button>

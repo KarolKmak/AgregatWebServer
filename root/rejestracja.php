@@ -1,10 +1,15 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agregat - zarządzanie kontem</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+</html>
 <?php
-$db = "agregat";
 $user = $_POST["login"];
 $pass = $_POST["haslo"];
 $email = $_POST["e-mail"];
-$host = "localhost";
-$conn = mysqli_connect($host,"root","usbw",$db);
+$conn = mysqli_connect("localhost","root","usbw","agregat");
 mysql_query("SET NAMES UTF8");
 if($conn)
 {
@@ -12,7 +17,7 @@ if($conn)
 	$result = mysqli_query($conn, $czy_jest);
 	if(mysqli_num_rows($result) > 0)
 	{
-		echo "<script>alert('Nazwa jest już zajęta');
+		echo "<script>alert('Nazwa użytkownika jest już zajęta');
 		window.location.href = '/rejestracja.html'
 		</script>";
 	}

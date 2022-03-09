@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Agregat - strona główna</title>
+    <title>Agregat - artykuł</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
